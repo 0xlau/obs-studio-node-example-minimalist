@@ -14,5 +14,5 @@ export default defineConfig({
     }),
     nodeResolve(),
   ],
-  external: ["obs-studio-node"],
+  external: ["obs-studio-node", "node-mac-permissions"],
 });

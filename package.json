@@ -14,6 +14,7 @@
   "dependencies": {
     "colors": "^1.4.0",
     "node-fetch": "^2.6.1",
+    "node-mac-permissions": "^2.3.0",
     "obs-studio-node": "https://s3-us-west-2.amazonaws.com/obsstudionodes3.streamlabs.com/osn-0.0.0-release.tar.gz",
     "shelljs": "^0.8.5",
     "stream": "^0.0.2"
@@ -22,6 +23,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.12.12",
+    "bindings": "^1.5.0",
     "rollup": "^4.17.2",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"

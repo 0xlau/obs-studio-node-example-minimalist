@@ -10,8 +10,9 @@
 - [ ] text_gdiplus（windows）
 - [x] image_source
 - [x] ffmpeg_source（mp4, gif）
-- [ ] browser_source（不可用有待继续研究）
-- [ ] coreaudio_input_capture（能占用设备，但推流无声音）
+- [ ] browser_source（not available）
+- [x] coreaudio_input_capture（macos, mic）
+- [x] av_capture_input（macos, camera）
 
 ## MacOS 可用的 SourceType 列表（打勾即已经看过）
 
@@ -24,7 +25,7 @@
 - [x] scene
 - [x] coreaudio_input_capture
 - [ ] coreaudio_output_capture
-- [ ] av_capture_input
+- [x] av_capture_input
 - [ ] display_capture
 - [ ] audio_line
 - [ ] ndi_source
@@ -60,6 +61,13 @@
 - [ ] mediasoupconnector
 - [ ] wasapi_process_output_capture
 - [ ] spout_capture
+
+## 运行环境须知
+
+本人只用了 MacOS 的环境下进行测试，在 MacOS 环境下需要打开摄像头、麦克风权限才可以使用对应功能
+在 `./src/utils/permission.ts` 中申请了 MacOS 的摄像头、麦克风权限
+
+> ！需要注意的是：执行终端最好用的是 `VSCode、Tabby、iTerm2` 等应用，而非系统自带 `Terminal.app` 执行，否则无法申请权限。
 
 ## 推流链接设置
 

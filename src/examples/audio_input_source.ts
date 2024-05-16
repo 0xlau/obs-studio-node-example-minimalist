@@ -25,10 +25,9 @@ export function useAudioInputSourceDemo(
   settings["device_id"] = device_id;
 
   audioInputSource.update(settings);
-  audioInputSource.save();
 
-  audioInputSource.volume = 1;
-  audioInputSource.muted = false;
+  // audioInputSource.volume = 1;
+  // audioInputSource.muted = false;
 
   osn.Global.setOutputSource(channel, audioInputSource);
 }

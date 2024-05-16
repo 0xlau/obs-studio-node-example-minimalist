@@ -1,12 +1,22 @@
 import * as osn from "obs-studio-node";
 import * as path from "path";
+
 import StreamConfig from "./config/stream";
 
 import { ImageSourceDemo } from "./examples/image_source";
 import { ffmpegSourceDemo } from "./examples/ffmpeg_source";
 import { TextSourceDemo } from "./examples/text_source";
+import { VideoCaptureSourceDemo } from "./examples/video_capture_source";
+import {
+  useAudioInputSourceDemo,
+  E_AUDIO_CHANNELS,
+} from "./examples/audio_input_source";
 
 import { SetSetting } from "./utils/obs_utils";
+import { applyPermission } from "./utils/permission";
+
+// 申请 MacOS 权限
+applyPermission();
 
 const workingPath = path.join(__dirname, "../node_modules/obs-studio-node");
 const obsDataPath = path.join(__dirname, "../obs-data");
@@ -53,19 +63,31 @@ mp4Item.position = { x: 0, y: 0 };
 mp4Item.scale = { x: 0.5, y: 0.5 };
 mp4Item.moveBottom(); // 放在最底层
 
-// 不可用
-// console.log("set audio mic");
-// const inputDeviceIndex = 1;
-// const inputDevices = osn.NodeObs.OBS_settings_getInputAudioDevices() as {
-//   id: string;
-//   description: string;
-// }[];
-// console.log("use", inputDevices[inputDeviceIndex]);
-// useAudioInputSourceDemo(
-//   "Mic/Aux",
-//   inputDevices[inputDeviceIndex].id,
-//   E_AUDIO_CHANNELS.INPUT_1
-// );
+console.log("set video camera");
+const videoDeviceIndex = 0;
+const videoDevices = osn.NodeObs.OBS_settings_getVideoDevices() as {
+  id: string;
+  description: string;
+}[];
+console.log("use", videoDevices[videoDeviceIndex]);
+const cameraItem = scene.add(
+  VideoCaptureSourceDemo("camera", videoDevices[videoDeviceIndex].id)
+);
+cameraItem.position = { x: 0, y: 0 };
+cameraItem.scale = { x: 0.4, y: 0.4 };
+
+console.log("set audio mic");
+const inputDeviceIndex = 1;
+const inputDevices = osn.NodeObs.OBS_settings_getInputAudioDevices() as {
+  id: string;
+  description: string;
+}[];
+console.log("use", inputDevices[inputDeviceIndex]);
+useAudioInputSourceDemo(
+  "Mic/Aux",
+  inputDevices[inputDeviceIndex].id,
+  E_AUDIO_CHANNELS.INPUT_1
+);
 
 console.log("set streamkey");
 SetSetting("Stream", "streamType", "rtmp_custom");
