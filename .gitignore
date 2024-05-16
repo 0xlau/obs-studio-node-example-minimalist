@@ -131,3 +131,4 @@ dist
 
 # obs
 /obs-data
+/src/config/stream.ts
